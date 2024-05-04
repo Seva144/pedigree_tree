@@ -1,0 +1,21 @@
+string:
+  datasource:
+    password: password
+    username: postgres
+    url: jdbc:postgresql://localhost/spring
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate-ddl: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+
+
