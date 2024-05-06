@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor
 import lombok.Data
 import lombok.NoArgsConstructor
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import javax.validation.constraints.Size;
 
 
@@ -66,6 +67,10 @@ open class User : UserDetails {
 
     override fun getPassword(): String? {
         return password
+    }
+
+    override fun getUsername(): String {
+        TODO("Not yet implemented")
     }
 
     fun setPassword(password: String){

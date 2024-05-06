@@ -2,7 +2,9 @@ package com.example.pedigreetree
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.Bean
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
@@ -11,5 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 class PedigreeTreeApplication
 
 fun main(args: Array<String>) {
-	runApplication<PedigreeTreeApplication>(*args)
+    runApplication<PedigreeTreeApplication>(*args)
 }
+
+

@@ -5,11 +5,11 @@ import jakarta.persistence.Id
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.Table
 import lombok.AllArgsConstructor
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "t_role")
-@AllArgsConstructor
-open class Role: GrantedAuthority {
+open class Role() : GrantedAuthority {
     @Id
     private var id: Long? = null
 
@@ -18,6 +18,15 @@ open class Role: GrantedAuthority {
     @Transient
     @ManyToMany(mappedBy = "roles")
     val users: MutableSet<User> = mutableSetOf()
+
+    constructor(id: Long?) : this() {
+        this.id = id
+    }
+
+    constructor(id: Long?, name: String?) : this() {
+        this.id = id
+        this.name = name
+    }
 
     override fun getAuthority(): String? {
         return name
