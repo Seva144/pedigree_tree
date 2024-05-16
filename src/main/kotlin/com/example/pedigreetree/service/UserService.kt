@@ -1,18 +1,20 @@
 package com.example.pedigreetree.service
 
-import com.example.pedigreetree.PedigreeTreeApplication
 import com.example.pedigreetree.entity.Role
 import com.example.pedigreetree.entity.User
 import com.example.pedigreetree.repository.RoleRepository
 import com.example.pedigreetree.repository.UserRepository
-import org.springframework.beans.factory.annotation.Autowired
+import jakarta.persistence.EntityManager
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
 
+@Suppress("UNCHECKED_CAST")
 @Service
 class UserService(
+    private val em: EntityManager,
     private val userRepository: UserRepository,
     private val roleRepository: RoleRepository
 ) : UserDetailsService {
@@ -46,5 +48,18 @@ class UserService(
         user.setPassword(bCryptPasswordEncoder.encode(user.password))
         userRepository.save(user)
         return true
+    }
+
+    fun deleteUserById(userId: Long): Boolean {
+        if(userRepository.findById(userId).isPresent) {
+            userRepository.deleteById(userId)
+            return true
+        }
+        return false
+    }
+
+    fun userGetList(idMin: Long): List<User> {
+        return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId").setParameter("paramId", idMin)
+            .resultList as List<User>
     }
 }

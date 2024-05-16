@@ -1,10 +1,7 @@
 package com.example.pedigreetree.entity
 
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
-import lombok.Data
 import lombok.NoArgsConstructor
-import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import javax.validation.constraints.Size;
 
@@ -37,7 +34,7 @@ open class User : UserDetails {
         this.id = id
     }
 
-    override fun getUserName(): String? {
+    fun getUserName(): String? {
         return username
     }
 
