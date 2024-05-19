@@ -21,7 +21,8 @@ class UserService(
 
     var bCryptPasswordEncoder = BCryptPasswordEncoder()
 
-    override fun loadUserByUsername(username: String): User? {
+    @Throws(UsernameNotFoundException::class)
+    override fun loadUserByUsername (username: String): User? {
         val user = userRepository.findByUsername(username)
 
         if (user != null) {
@@ -50,7 +51,7 @@ class UserService(
         return true
     }
 
-    fun deleteUserById(userId: Long): Boolean {
+    fun deleteUser(userId: Long): Boolean {
         if(userRepository.findById(userId).isPresent) {
             userRepository.deleteById(userId)
             return true

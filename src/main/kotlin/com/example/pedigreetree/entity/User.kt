@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails
 import javax.validation.constraints.Size;
 
 
-@Entity
 @Table(name = "t_user")
 @NoArgsConstructor
 open class User : UserDetails {
@@ -66,14 +65,14 @@ open class User : UserDetails {
         return password
     }
 
-    override fun getUsername(): String {
-        TODO("Not yet implemented")
-    }
-
     fun setPassword(password: String){
         this.password = password
     }
 
+
+    override fun getUsername(): String {
+        TODO("Not yet implemented")
+    }
 
 
     fun getPasswordConfirm(): String? {

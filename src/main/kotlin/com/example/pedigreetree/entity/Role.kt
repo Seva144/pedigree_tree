@@ -1,13 +1,11 @@
 package com.example.pedigreetree.entity
 
-import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.Table
 import lombok.AllArgsConstructor
 import org.springframework.security.core.GrantedAuthority;
 
-@Entity
 @Table(name = "t_role")
 open class Role() : GrantedAuthority {
     @Id
